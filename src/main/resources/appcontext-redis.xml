@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <util:properties id="redis" location="classpath:redis.properties"/>
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"
+          p:maxTotal="#{redis['redis.pool.maxTotal']}"
+          p:maxIdle="#{redis['redis.pool.maxIdle']}"
+          p:minIdle="#{redis['redis.pool.minIdle']}"
+          p:maxWaitMillis="#{redis['redis.pool.maxWaitMillis']}"/>
+
+    <bean id="jedisConnFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:hostName="#{redis['redis.host']}"
+          p:port="#{redis['redis.port']}"
+          p:database="#{redis['redis.database']}"
+          p:password="#{redis['redis.password']}"
+          p:poolConfig-ref="poolConfig"/>
+
+    <bean id="contractConnFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:hostName="#{redis['redis.host']}"
+          p:port="#{redis['redis.port']}"
+          p:database="#{redis['redis.database1']}"
+          p:password="#{redis['redis.password']}"
+          p:poolConfig-ref="poolConfig"/>
+
+
+    <bean id="stringRedisSerializer"
+          class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+    <bean id="redisTemplate"
+          class="org.springframework.data.redis.core.RedisTemplate"
+          p:connectionFactory-ref="jedisConnFactory"
+          p:keySerializer-ref="stringRedisSerializer">
+    </bean>
+
+    <bean id="redisTemplateTransaction"
+          class="org.springframework.data.redis.core.RedisTemplate"
+          p:connectionFactory-ref="jedisConnFactory"
+          p:keySerializer-ref="stringRedisSerializer">
+    </bean>
+
+    <bean id="contractRedisTemplate"
+          class="org.springframework.data.redis.core.RedisTemplate"
+          p:connectionFactory-ref="contractConnFactory"
+          p:keySerializer-ref="stringRedisSerializer"
+          p:valueSerializer-ref="stringRedisSerializer">
+    </bean>
+
+
+    <bean id="redisUtilsTest"
+          class="com.bobby.peng.learning.basic.utils.RedisUtils"
+          p:redisTemplate-ref="redisTemplate">
+    </bean>
+
+    <bean id="contractRedisUtils"
+          class="com.bobby.peng.learning.basic.utils.RedisUtils"
+          p:redisTemplate-ref="contractRedisTemplate">
+    </bean>
+
+    <bean id="redisUtilsLock"
+          class="com.bobby.peng.learning.basic.utils.RedisUtils"
+          p:redisTemplate-ref="redisTemplateTransaction">
+    </bean>
+
+    <bean id="redisLockUtils"
+          class="com.bobby.peng.learning.basic.utils.RedisLockUtils"
+          p:redisUtils-ref="redisUtilsLock">
+    </bean>
+</beans>
