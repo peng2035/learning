@@ -5,6 +5,25 @@ package com.bobby.peng.learning.knowledge.point;
  */
 public class FinalLearning {
 
+    int value;
 
+    final int finalValue;
+
+    static FinalLearning finalLearning;
+
+    public FinalLearning(int value,int finalValue) {
+        this.value = value;
+        this.finalValue = finalValue;
+    }
+
+    public static void write() {
+        finalLearning = new FinalLearning(1,2);
+    }
+
+    public static void read() {
+        FinalLearning finalLearning2 = finalLearning;
+        int value = finalLearning.value;
+        int finalValue = finalLearning.finalValue;
+    }
 
 }
