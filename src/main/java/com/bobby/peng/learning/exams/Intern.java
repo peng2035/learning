@@ -1,21 +1,36 @@
 package com.bobby.peng.learning.exams;
 
+import java.util.LinkedHashMap;
+
 /**
  * Created by bobby.peng on 2017/1/25.
  */
 public class Intern {
+    private int value = 1;
+
+    private String s3 = "bobby";
+
+    private void test() {
+        String s2 = new StringBuilder("kp").append("l").toString();
+
+        System.out.println(s2.intern() == s2);
+
+        String s1 = new String("fed");
+        while(true){}
+//        System.out.println(s1.intern() == s1);
+    }
 
     public static void main(String[] args) {
-        String s0 = "aaaa";
-        String s3 = new StringBuilder("aaaa").toString();
-        s3.intern();
-        String s4 = "aaaa";
-        System.out.println(s3==s4);
+//        Intern intern = new Intern();
+//
+//        intern.test();
 
-        String s1 = new StringBuilder("aa").append("aa").toString();
-        s1.intern();
-        String s2 = "aaaa";
-        System.out.println(s1==s2);
+        System.out.println(1+1+'1'+1+1+1+1+"1");
+
+        LinkedHashMap<String,String> map = new LinkedHashMap<>();
+
+        map.remove("1");
+
     }
 
 }

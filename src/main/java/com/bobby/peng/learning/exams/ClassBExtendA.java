@@ -1,5 +1,8 @@
 package com.bobby.peng.learning.exams;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 /**
  *
  *
@@ -8,9 +11,23 @@ package com.bobby.peng.learning.exams;
  */
 public class ClassBExtendA extends ClassA{
 
-    public static void main(String[] args) {
-        ClassA classBExtendA = new ClassBExtendA();
+    public String bField;
 
-        System.out.println(classBExtendA.getClass() == ClassA.class);
+    public static void main(String[] args) throws NoSuchMethodException {
+        ClassBExtendA classBExtendA = new ClassBExtendA();
+
+        Method method = ClassA.test(classBExtendA);
+        if(method == null)
+            System.out.println("null");
+
+        System.out.println(111);
+    }
+
+    public String getbField() {
+        return bField;
+    }
+
+    public void setbField(String bField) {
+        this.bField = bField;
     }
 }

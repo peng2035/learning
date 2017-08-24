@@ -1,5 +1,8 @@
 package com.bobby.peng.learning.exams;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 /**
  *
  *
@@ -12,6 +15,10 @@ public class ClassA {
 
     public ClassA() {
 
+    }
+
+    public static Method test(ClassA classA) throws NoSuchMethodException {
+        return classA.getClass().getMethod("getbField");
     }
 
     public String getField1() {
