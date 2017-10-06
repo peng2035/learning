@@ -16,5 +16,11 @@
 
     <bean class="com.bobby.peng.learning.spring.aop.AopEntityImpl"/>
 
+    <bean class="com.bobby.peng.learning.entity.ConstructorTest">
+        <constructor-arg name="proxyServer" value="zhonganonline.com"/>
+        <constructor-arg name="port" value="80"/>
+        <constructor-arg name="timeout" value="100"/>
+    </bean>
+
     <!--<bean class="com.bobby.peng.learning.spring.test.ApplicationContextListenerImpl"/>-->
 </beans>
