@@ -41,4 +41,21 @@ public class AQSTest extends AbstractQueuedSynchronizer {
     protected boolean tryRelease(int arg) {
         return super.tryRelease(arg);  // TODO
     }
+
+    class AQS1 extends AbstractQueuedSynchronizer {
+
+    }
+
+    class AQS2 extends AbstractQueuedSynchronizer {
+
+    }
+
+    public static void main(String[] args) {
+        AQSTest aqsTest = new AQSTest();
+
+        AQS1 aqs1 = aqsTest.new AQS1();
+        AQS2 aqs2 = aqsTest.new AQS2();
+
+        System.out.println(1);
+    }
 }
