@@ -6,7 +6,7 @@
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.bobby.peng.learning.controller,com.bobby.peng.learning.mq"/>
+    <context:component-scan base-package="com.bobby.peng.com.bobby.peng.learning.java.controller,com.bobby.peng.com.bobby.peng.learning.java.mq"/>
 
     <!--<util:properties id="mysql" location="classpath:jdbc.properties"/>-->
 
@@ -49,22 +49,22 @@
         <!--<property name="dataSource" ref="dataSource"/>-->
         <!--<property name="configLocation" value="classpath:mybatis-config.xml"></property>-->
         <!--<property name="mapperLocations" value="classpath*:sqlmap/*.xml"></property>-->
-        <!--<property name="typeAliasesPackage" value="com.bobby.peng.learning.entity"></property>-->
+        <!--<property name="typeAliasesPackage" value="com.bobby.peng.com.bobby.peng.learning.java.entity"></property>-->
     <!--</bean>-->
 
-    <!--<bean id="classT" class="com.bobby.peng.learning.exams.ClassT">-->
-        <!--<property name="value" value="com.bobby.peng.learning.exams.ClassA"></property>-->
+    <!--<bean id="classT" class="com.bobby.peng.com.bobby.peng.learning.java.exams.ClassT">-->
+        <!--<property name="value" value="com.bobby.peng.com.bobby.peng.learning.java.exams.ClassA"></property>-->
     <!--</bean>-->
 
-    <bean id="beanImpl" class="com.bobby.peng.learning.spring.test.BeanImpl" lazy-init="true"></bean>
+    <bean id="beanImpl" class="com.bobby.peng.com.bobby.peng.learning.java.spring.test.BeanImpl" lazy-init="true"></bean>
 
-    <bean id="beanPostProcessorImpl" class="com.bobby.peng.learning.spring.BeanPostProcessorImpl"/>
+    <bean id="beanPostProcessorImpl" class="com.bobby.peng.com.bobby.peng.learning.java.spring.BeanPostProcessorImpl"/>
 
     <aop:aspectj-autoproxy/>
 
-    <!--<bean class="com.bobby.peng.learning.spring.aop.AopTest"></bean>-->
+    <!--<bean class="com.bobby.peng.com.bobby.peng.learning.java.spring.aop.AopTest"></bean>-->
 
-    <!--<bean clacom.bobby.peng.learning.spring.aop.AopEntityImplImpltity"/>-->
+    <!--<bean clacom.bobby.peng.com.bobby.peng.learning.java.spring.aop.AopEntityImplImpltity"/>-->
 
-    <!--<bean class="com.bobby.peng.learning.spring.test.ApplicationContextListenerImpl"/>-->
+    <!--<bean class="com.bobby.peng.com.bobby.peng.learning.java.spring.test.ApplicationContextListenerImpl"/>-->
 </beans>

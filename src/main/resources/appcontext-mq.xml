@@ -52,13 +52,13 @@
         </property>
     </bean>
 
-    <bean id="messageRecoverer" class="com.bobby.peng.learning.mq.MessageRecover"/>
+    <bean id="messageRecoverer" class="com.bobby.peng.com.bobby.peng.learning.java.mq.MessageRecover"/>
 
     <rabbit:template id="privateMessageAmqpTemplate" connection-factory="ConnectionFactory"/>
 
-    <bean id="unAckTestListener" class="com.bobby.peng.learning.mq.UnAckTestListener"/>
+    <bean id="unAckTestListener" class="com.bobby.peng.com.bobby.peng.learning.java.mq.UnAckTestListener"/>
 
-    <bean id="retryTestListener" class="com.bobby.peng.learning.mq.RetryTestListener"/>
+    <bean id="retryTestListener" class="com.bobby.peng.com.bobby.peng.learning.java.mq.RetryTestListener"/>
 
     <rabbit:queue id="Queue"
                   declared-by="Admin"

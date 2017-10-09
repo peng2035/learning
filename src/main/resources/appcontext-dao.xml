@@ -5,7 +5,7 @@
 
     <!--<bean id="demoDao" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
         <!--<property name="mapperInterface"-->
-                  <!--value="com.bobby.peng.learning.dao.DemoDao"/>-->
+                  <!--value="com.bobby.peng.com.bobby.peng.learning.java.dao.DemoDao"/>-->
         <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
     <!--</bean>-->
 

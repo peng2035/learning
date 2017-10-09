@@ -52,22 +52,22 @@
 
 
     <bean id="redisUtilsTest"
-          class="com.bobby.peng.learning.basic.utils.RedisUtils"
+          class="com.bobby.peng.com.bobby.peng.learning.java.basic.utils.RedisUtils"
           p:redisTemplate-ref="redisTemplate">
     </bean>
 
     <bean id="contractRedisUtils"
-          class="com.bobby.peng.learning.basic.utils.RedisUtils"
+          class="com.bobby.peng.com.bobby.peng.learning.java.basic.utils.RedisUtils"
           p:redisTemplate-ref="contractRedisTemplate">
     </bean>
 
     <bean id="redisUtilsLock"
-          class="com.bobby.peng.learning.basic.utils.RedisUtils"
+          class="com.bobby.peng.com.bobby.peng.learning.java.basic.utils.RedisUtils"
           p:redisTemplate-ref="redisTemplateTransaction">
     </bean>
 
     <bean id="redisLockUtils"
-          class="com.bobby.peng.learning.basic.utils.RedisLockUtils"
+          class="com.bobby.peng.com.bobby.peng.learning.java.basic.utils.RedisLockUtils"
           p:redisUtils-ref="redisUtilsLock">
     </bean>
 </beans>
