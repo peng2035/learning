@@ -45,7 +45,7 @@
                     <archive>
                         <index>true</index>
                         <manifest>
-                            <mainClass>com.bobby.peng.com.bobby.peng.learning.java.disruptor.exam.UnsafeExam</mainClass>
+                            <mainClass>com.bobby.peng.learning.java.disruptor.exam.UnsafeExam</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
