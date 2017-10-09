@@ -206,17 +206,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.taobao.tair</groupId>
-            <artifactId>tair-client</artifactId>
-            <version>2.3.4.43</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.25</version>
