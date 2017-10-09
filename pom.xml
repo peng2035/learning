@@ -264,7 +264,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.bobby.peng.learning.disruptor.exam.IncrWithLock</mainClass>
+                            <mainClass>com.bobby.peng.learning.disruptor.exam.UnsafeExam</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
