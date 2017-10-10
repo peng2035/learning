@@ -26,8 +26,8 @@ public class UnsafeExam {
     }
 
     public static void main(String[] args) {
-        int s = unsafe.arrayIndexScale(int[].class);
-        System.out.println(s);
+//        int s = unsafe.arrayIndexScale(int[].class);
+//        System.out.println(s);
         int o = unsafe.arrayIndexScale(Object[].class);
         System.out.println(o);
     }
