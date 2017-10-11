@@ -21,8 +21,7 @@ public class Test {
 
         // Connect the handler
         LongEventHandler longEventHandler = new LongEventHandler();
-        disruptor.handleEventsWith(longEventHandler);
-        disruptor.handleEventsWith(longEventHandler.new InnerLongEventHandler());
+        disruptor.handleEventsWith(longEventHandler,longEventHandler.new InnerLongEventHandler());
 
         // Start the Disruptor, starts all threads running
         disruptor.start();
