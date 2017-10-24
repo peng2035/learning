@@ -16,23 +16,18 @@ public class BestTimeToBuyAndSellStockWithTransactionFee {
             int current = prices[i];
 
             if (current <= min) {
-                min = current;
-                if(max - min > fee) {
+                if (max - min > fee) {
                     result += (max - min - fee);
                     min = current;
                     max = 0;
                     continue;
                 }
+                min = current;
+                max = 0;
             }
 
-            if (current - min > fee) {
-                if (current > max) {
-                    if (i == prices.length - 1) {
-                        result += (current - min - fee);
-                        return result;
-                    }
-                    max = current;
-                }
+            if (current > max) {
+                max = current;
             }
 
             if (max - current > fee) {
@@ -46,7 +41,7 @@ public class BestTimeToBuyAndSellStockWithTransactionFee {
 
         }
 
-        if (max > min) {
+        if (max > (min + fee)) {
             result += (max - min - fee);
         }
 
@@ -56,7 +51,7 @@ public class BestTimeToBuyAndSellStockWithTransactionFee {
     public static void main(String[] args) {
         BestTimeToBuyAndSellStockWithTransactionFee b = new BestTimeToBuyAndSellStockWithTransactionFee();
 
-        System.out.println(b.maxProfit(StringUtils.buildStringToIntArray("1,2,1,5,3,5,5,4,1,5"), 0));
+        System.out.println(b.maxProfit(StringUtils.buildStringToIntArray("4,5,2,4,3,3,1,2,5,4"), 1));
 
     }
 }
