@@ -9,55 +9,35 @@ public class ContainerWithMostWater {
 
     public int maxArea(int[] height) {
         int length = height.length;
-        int leftMax = height[0], rightMax = height[length - 1], leftMaxIndex = 0, rightMaxIndex = length - 1;
-        int result = Math.min(leftMax, rightMax) * (rightMaxIndex - leftMaxIndex);
-        for (int i = 1, j = height.length - 2; i < j;) {
-
-            while (height[i] <= leftMax) {
-                if (i >= j)
-                    return result;
-                i++;
-            }
-
-            int area = Math.min(height[i], rightMax) * (rightMaxIndex - i);
-            if (area > result) {
-                result = area;
-                leftMax = height[i];
-                leftMaxIndex = i++;
-                continue;
-            }
-
-            while (height[j] <= rightMax && i < j) {
-                if (i >= j)
-                    return result;
-                j--;
-            }
-
-            area = Math.min(height[leftMaxIndex], height[j]) * (j - leftMaxIndex);
-            int area2 = Math.min(height[i], height[j]) * (j - i);
-            if (area > area2) {
-                rightMax = height[j];
-                rightMaxIndex = j;
-                i = leftMaxIndex + 1;
-                if (result < area) {
-                    result = area;
+        int leftMaxIndex = -1, rightMaxIndex = -1;
+        int result = 0;
+        for (int i = 0, j = length - 1; i < j;) {
+            if(height[i] < height[j]) {
+                while (leftMaxIndex != -1 && height[i] <= height[leftMaxIndex]) {
+                    if (i >= j)
+                        return result;
+                    i++;
                 }
             } else {
-                rightMax = height[j];
-                rightMaxIndex = j;
-                i++;
-                if (result < area2) {
-                    result = area2;
+                while (rightMaxIndex != -1 && height[j] <= height[rightMaxIndex]) {
+                    if (i >= j)
+                        return result;
+                    j--;
                 }
             }
+            result = Math.max(result, Math.min(height[i], height[j]) * (j - i));
+
+            leftMaxIndex = i;
+            rightMaxIndex = j;
         }
+
         return result;
     }
 
     public static void main(String[] args) {
         ContainerWithMostWater containerWithMostWater = new ContainerWithMostWater();
 
-        System.out.println(containerWithMostWater.maxArea(StringUtils.buildStringToIntArray("2,3,4,5,18,17,6")));
+        System.out.println(containerWithMostWater.maxArea(StringUtils.buildStringToIntArray("1,2,4,3")));
     }
 
 }
