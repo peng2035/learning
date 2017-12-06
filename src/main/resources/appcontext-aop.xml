@@ -8,16 +8,16 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean id="interceptorTest" class="com.bobby.peng.com.bobby.peng.learning.java.interceptor.InterceptorTest"/>
+    <bean id="interceptorTest" class="com.bobby.peng.learning.java.interceptor.InterceptorTest"/>
 
-    <bean id="testAOP" class="com.bobby.peng.com.bobby.peng.learning.java.interceptor.test.TestAOP"/>
+    <bean id="testAOP" class="com.bobby.peng.learning.java.interceptor.test.TestAOP"/>
 
     <!--<bean class="com.bobby.peng.com.bobby.peng.learning.java.spring.aop.AopTest"></bean>-->
 
-    <bean class="com.bobby.peng.com.bobby.peng.learning.java.spring.aop.AopEntityImpl"/>
+    <bean class="com.bobby.peng.learning.java.spring.aop.AopEntityImpl"/>
 
-    <bean class="com.bobby.peng.com.bobby.peng.learning.java.entity.ConstructorTest">
-        <constructor-arg name="proxyServer" value="zhonganonline.com"/>
+    <bean class="com.bobby.peng.learning.java.entity.ConstructorTest">
+        <constructor-arg name="proxyServer" value="bobby.peng.com"/>
         <constructor-arg name="port" value="80"/>
         <constructor-arg name="timeout" value="100"/>
     </bean>
