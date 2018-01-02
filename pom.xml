@@ -12,7 +12,8 @@
         <module>learning-maven</module>
         <module>learning-spring</module>
         <module>learning-java</module>
-        <module>hello-world</module>
+        <module>learning-web</module>
+        <module>learning-annotation</module>
     </modules>
 
     <properties>

@@ -1,4 +1,4 @@
-package com.bobby.peng.learning.java.annoation;
+package com.bobby.peng.learning.java.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
