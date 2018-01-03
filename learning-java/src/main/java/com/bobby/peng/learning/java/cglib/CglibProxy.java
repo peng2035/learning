@@ -20,13 +20,13 @@ public class CglibProxy implements MethodInterceptor {
     }
 
     public static void main(String[] args) {
-        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/peng2035/git/learning/target/classes/com/bobby/peng/learning/cglib/aaaa");
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/peng2035/git/learning/learning-java/target/classes/com/bobby/peng/learning/cglib/aaaa");
 
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(CglibTest.class);
         enhancer.setCallback(new CglibProxy());
         CglibTest userService = (CglibTest) enhancer.create();
-        userService.proxy();
+        userService.method1();
         System.out.println(1111);
     }
 }

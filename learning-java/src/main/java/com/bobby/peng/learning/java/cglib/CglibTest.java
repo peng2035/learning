@@ -5,8 +5,13 @@ package com.bobby.peng.learning.java.cglib;
  */
 public class CglibTest {
 
-    public void proxy() {
-        System.out.println("do proxy");
+    public void method1() {
+        System.out.println("do method1");
+        method2();
+    }
+
+    public void method2() {
+        System.out.println("do method2");
     }
 
 }
