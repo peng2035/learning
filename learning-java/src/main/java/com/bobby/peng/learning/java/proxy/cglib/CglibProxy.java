@@ -1,4 +1,4 @@
-package com.bobby.peng.learning.java.cglib;
+package com.bobby.peng.learning.java.proxy.cglib;
 
 import net.sf.cglib.core.DebuggingClassWriter;
 import net.sf.cglib.proxy.Enhancer;

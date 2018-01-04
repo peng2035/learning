@@ -10,14 +10,18 @@ import sun.misc.ProxyGenerator;
  */
 public class ProxyUtils {
 
-    public static void generateClassFile(Class clazz,String proxyName){
-        byte[] classFile = ProxyGenerator.generateProxyClass(proxyName, clazz.getInterfaces());
+    public static void generateClassFile(Class clazz, String proxyName) {
         String paths = clazz.getResource(".").getPath();
         System.out.println(paths);
+        generateClassFile(clazz, proxyName, paths);
+    }
+
+    public static void generateClassFile(Class clazz, String proxyName, String paths) {
+        byte[] classFile = ProxyGenerator.generateProxyClass(proxyName, clazz.getInterfaces());
         FileOutputStream out = null;
 
         try {
-            out = new FileOutputStream(paths+proxyName+".class");
+            out = new FileOutputStream(paths + proxyName + ".class");
             out.write(classFile);
             out.flush();
         } catch (Exception e) {
@@ -30,5 +34,4 @@ public class ProxyUtils {
             }
         }
     }
-
 }

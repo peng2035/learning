@@ -1,4 +1,4 @@
-package com.bobby.peng.learning.java.cglib;
+package com.bobby.peng.learning.java.proxy.cglib;
 
 /**
  * Created by bobby.peng on 2017/8/29.
