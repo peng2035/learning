@@ -35,11 +35,16 @@ public class ClassLoaderTest {
                     throw new ClassNotFoundException(name);
                 }
             }
+
+            @Override
+            protected Class<?> findClass(String name) throws ClassNotFoundException {
+                return super.findClass(name);
+            }
         };
 
-        Object obj = myLoader.loadClass("java.util.HashMap").newInstance();
+        Object obj = myLoader.loadClass("com.bobby.peng.learning.java.classloader.ClassLoaderTest").newInstance();
         System.out.println(obj.getClass());
-        System.out.println(obj instanceof HashMap);
+        System.out.println(obj instanceof ClassLoaderTest);
     }
 
 }

@@ -22,5 +22,6 @@ public class ReferencingCountingGC {
         r2 = null;
 
         System.gc();
+        System.out.println(ReferencingCountingGC.class.getClassLoader());
     }
 }
