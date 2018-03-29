@@ -4,6 +4,7 @@ import com.bobby.peng.learning.java.learning.AbstractTestCase;
 import com.bobby.peng.learning.java.basic.utils.RedisUtils;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,19 +19,19 @@ import java.util.List;
 @Component
 public class RedisUtilsTest extends AbstractTestCase {
 
-//    @Autowired
-//    @Qualifier("redisUtilsTest")
-    private RedisUtils<String,List<Integer>> redisUtils;
+    @Autowired
+    private RedisUtils<String, String> redisUtils;
 
     @Test
-    @Ignore
     public void test() {
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(1);
-        list.add(3);
-        redisUtils.set("list", list);
-        System.out.println(redisUtils.get("list"));
+        for (int i = 0; i < 1000; i++) {
+            redisUtils.set("scan:test:key:" + i, "value");
+        }
+    }
+
+    @Test
+    public void testScan() {
+        redisUtils.scan("scan*",100);
     }
 
 }
