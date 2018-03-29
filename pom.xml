@@ -250,6 +250,11 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

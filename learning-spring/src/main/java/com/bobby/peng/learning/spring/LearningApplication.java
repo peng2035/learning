@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
  */
 @EnableAutoConfiguration
 @ComponentScan
+@ImportResource("classpath:appcontext*.xml")
 public class LearningApplication {
 
     public static void main(String[] args) throws Exception{
