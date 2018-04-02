@@ -16,11 +16,11 @@ public class KafkaService {
     @Autowired
     private KafkaTemplate<String, String> template;
 
-    public void randomProduce() {
+    public void randomProduce(String topic) {
         String key = String.valueOf(RandomUtils.nextInt());
         String value = String.valueOf(RandomUtils.nextInt());
-        log.info("produce topic : pengtianhao-test,key:{},value:{}", key, value);
-        template.send("pengtianhao-test", key, value);
+        log.info("produce topic:{},key:{},value:{}", topic, key, value);
+        template.send(topic, key, value);
     }
 
 }

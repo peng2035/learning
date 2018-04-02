@@ -23,6 +23,6 @@ public class KafkaController {
     @ResponseBody
     public void produce() {
 
-        kafkaService.randomProduce();
+//        kafkaService.randomProduce();
     }
 }
