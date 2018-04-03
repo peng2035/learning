@@ -30,7 +30,7 @@ public class Listener {
 
     private final static String PENGTIANHAO_TEST_GROUP_1 = "pengtianhao-test-group-1";
 
-    private final static String PENGTIANHAO_TEST_GROUP_2 = "pengtianhao-test-group-1";
+    private final static String PENGTIANHAO_TEST_GROUP_2 = "pengtianhao-test-group-2";
 
     @KafkaListener(topics = "pengtianhao-test", groupId = PENGTIANHAO_TEST_GROUP_1)
     public void listen(ConsumerRecord<String, String> cr) {
@@ -47,7 +47,7 @@ public class Listener {
 
     @KafkaListener(topics = "pengtianhao-test", groupId = PENGTIANHAO_TEST_GROUP_2)
     public void listen2(ConsumerRecord<String, String> cr) {
-        map.computeIfAbsent("pengtianhao-test-group-2", k -> new LongAdder()).increment();
+        map.computeIfAbsent(PENGTIANHAO_TEST_GROUP_2, k -> new LongAdder()).increment();
         long value = map.get(PENGTIANHAO_TEST_GROUP_2).longValue();
 
         if ((value & 4095l) == 4095l) {
