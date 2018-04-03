@@ -16,10 +16,17 @@ public class KafkaService {
     @Autowired
     private KafkaTemplate<String, String> template;
 
+    private static ThreadLocal<Integer> num = ThreadLocal.withInitial(() -> 0);
+
     public void randomProduce(String topic) {
         String key = String.valueOf(RandomUtils.nextInt());
         String value = String.valueOf(RandomUtils.nextInt());
-        log.info("produce topic:{},key:{},value:{}", topic, key, value);
+        if(num.get() == 1000) {
+            log.info("produce topic:{},key:{},value:{}", topic, key, value);
+            num.set(0);
+        } else {
+            num.set(num.get()+1);
+        }
         template.send(topic, key, value);
     }
 
