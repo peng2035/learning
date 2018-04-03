@@ -24,32 +24,34 @@ import java.util.concurrent.atomic.LongAdder;
 //@KafkaListener(topics = "pengtianhao-test-2",groupId = "pengtianhao-test-2-group-1")
 public class Listener {
     @Autowired
-    private RedisUtils<String,String> redisUtils;
+    private RedisUtils<String, String> redisUtils;
 
-    public static Map<String,LongAdder> map = Maps.newConcurrentMap();
+    public static Map<String, LongAdder> map = Maps.newConcurrentMap();
 
     private final static String PENGTIANHAO_TEST_GROUP_1 = "pengtianhao-test-group-1";
 
     private final static String PENGTIANHAO_TEST_GROUP_2 = "pengtianhao-test-group-1";
 
-    @KafkaListener(topics = "pengtianhao-test",groupId = PENGTIANHAO_TEST_GROUP_1)
+    @KafkaListener(topics = "pengtianhao-test", groupId = PENGTIANHAO_TEST_GROUP_1)
     public void listen(ConsumerRecord<String, String> cr) {
 
-        map.computeIfAbsent(PENGTIANHAO_TEST_GROUP_1,k -> new LongAdder()).increment();
+        map.computeIfAbsent(PENGTIANHAO_TEST_GROUP_1, k -> new LongAdder()).increment();
 
-        if((map.get(PENGTIANHAO_TEST_GROUP_1).longValue() & 4095l) == 4095l) {
-            log.info(PENGTIANHAO_TEST_GROUP_1 + " : " + cr.toString());
+        long value = map.get(PENGTIANHAO_TEST_GROUP_1).longValue();
+        if ((value & 4095l) == 4095l) {
+            log.info("listener : group id : {}, record : {} , value : {}", PENGTIANHAO_TEST_GROUP_1, cr.toString(), value);
         }
 //        redisUtils.set(Thread.currentThread().getName(),cr.value());
 //        set.add(Thread.currentThread());
     }
 
-    @KafkaListener(topics = "pengtianhao-test",groupId = PENGTIANHAO_TEST_GROUP_2)
+    @KafkaListener(topics = "pengtianhao-test", groupId = PENGTIANHAO_TEST_GROUP_2)
     public void listen2(ConsumerRecord<String, String> cr) {
-        map.computeIfAbsent("pengtianhao-test-group-2",k -> new LongAdder()).increment();
+        map.computeIfAbsent("pengtianhao-test-group-2", k -> new LongAdder()).increment();
+        long value = map.get(PENGTIANHAO_TEST_GROUP_2).longValue();
 
-        if((map.get(PENGTIANHAO_TEST_GROUP_2).longValue() & 4095l) == 4095l) {
-            log.info(PENGTIANHAO_TEST_GROUP_2 + " : " + cr.toString());
+        if ((value & 4095l) == 4095l) {
+            log.info("listener : group id : {}, record : {} , value : {}", PENGTIANHAO_TEST_GROUP_2, cr.toString(), value);
         }
     }
 
