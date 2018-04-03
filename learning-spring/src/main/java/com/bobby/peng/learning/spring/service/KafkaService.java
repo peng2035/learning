@@ -21,12 +21,10 @@ public class KafkaService {
     public void randomProduce(String topic) {
         String key = String.valueOf(RandomUtils.nextInt());
         String value = String.valueOf(RandomUtils.nextInt());
-        if(num.get() == 1000) {
-            log.info("produce topic:{},key:{},value:{}", topic, key, value);
-            num.set(0);
-        } else {
-            num.set(num.get()+1);
+        if((num.get() & 1023l) == 1023l) {
+            log.info("produce topic:{},key:{},value:{},current num : {}", topic, key, value, num);
         }
+        num.set(num.get()+1);
         template.send(topic, key, value);
     }
 
