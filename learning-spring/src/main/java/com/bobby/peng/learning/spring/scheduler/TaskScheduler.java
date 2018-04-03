@@ -18,7 +18,7 @@ public class TaskScheduler {
 
     @Scheduled(cron = "*/1 * * * * ?")
     public void start() {
-        for(int i=0;i<200;i++) {
+        for(int i=0;i<2000;i++) {
             kafkaService.randomProduce("pengtianhao-test");
             kafkaService.randomProduce("pengtianhao-test-2");
         }
