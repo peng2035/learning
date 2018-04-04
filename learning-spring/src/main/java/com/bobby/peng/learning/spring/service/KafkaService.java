@@ -22,7 +22,7 @@ public class KafkaService {
         String key = String.valueOf(RandomUtils.nextInt());
         String value = String.valueOf(RandomUtils.nextInt());
         int num = threadLocalNum.get();
-        if((num & 1023l) == 1023l) {
+        if((num & 8191l) == 8191l) {
             log.info("produce topic:{},key:{},value:{},current num : {}", topic, key, value, num);
         }
         threadLocalNum.set(num +1);

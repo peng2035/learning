@@ -38,7 +38,7 @@ public class Listener {
         map.computeIfAbsent(PENGTIANHAO_TEST_GROUP_1, k -> new LongAdder()).increment();
 
         long value = map.get(PENGTIANHAO_TEST_GROUP_1).longValue();
-        if ((value & 4095l) == 4095l) {
+        if ((value & 8191l) == 8191l) {
             log.info("listener : group id : {}, record : {} , value : {}", PENGTIANHAO_TEST_GROUP_1, cr.toString(), value);
         }
 //        redisUtils.set(Thread.currentThread().getName(),cr.value());
@@ -50,7 +50,7 @@ public class Listener {
         map.computeIfAbsent(PENGTIANHAO_TEST_GROUP_2, k -> new LongAdder()).increment();
         long value = map.get(PENGTIANHAO_TEST_GROUP_2).longValue();
 
-        if ((value & 4095l) == 4095l) {
+        if ((value & 8191l) == 8191l) {
             log.info("listener : group id : {}, record : {} , value : {}", PENGTIANHAO_TEST_GROUP_2, cr.toString(), value);
         }
     }
