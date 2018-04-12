@@ -29,8 +29,14 @@ public class SemaphoreTest {
                 @Override
                 public void run() {
                     try {
-                        System.out.println(finalI);
+                        System.out.println("try acquire : " + Thread.currentThread());
                         semaphoreTest.acquire();
+                        System.out.println(Thread.currentThread() + " get lock");
+                        if(finalI == 0) {
+                            TimeUnit.SECONDS.sleep(15);
+                            System.out.println("try release : " + Thread.currentThread());
+                            semaphoreTest.releaseAcquire();
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
