@@ -1,5 +1,7 @@
 package com.bobby.peng.learning.java.sync;
 
+import com.bobby.peng.learning.java.sync.test.SyncTest;
+
 /**
  * Created by bobby.peng on 28/01/2018.
  */

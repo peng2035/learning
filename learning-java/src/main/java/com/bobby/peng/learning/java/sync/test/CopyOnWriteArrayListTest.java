@@ -1,4 +1,4 @@
-package com.bobby.peng.learning.java.sync;
+package com.bobby.peng.learning.java.sync.test;
 
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;

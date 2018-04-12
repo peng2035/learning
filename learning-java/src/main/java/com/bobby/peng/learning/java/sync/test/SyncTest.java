@@ -1,6 +1,6 @@
-package com.bobby.peng.learning.java.sync;
+package com.bobby.peng.learning.java.sync.test;
 
-import org.apache.tools.ant.taskdefs.Sync;
+import com.bobby.peng.learning.java.sync.Sync2;
 
 /**
  * Created by bobby.peng on 2016/10/8.

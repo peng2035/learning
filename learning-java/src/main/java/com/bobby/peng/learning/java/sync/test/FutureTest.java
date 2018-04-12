@@ -1,4 +1,4 @@
-package com.bobby.peng.learning.java.sync;
+package com.bobby.peng.learning.java.sync.test;
 
 import java.util.HashMap;
 import java.util.concurrent.*;

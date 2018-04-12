@@ -1,4 +1,4 @@
-package com.bobby.peng.learning.java.sync;
+package com.bobby.peng.learning.java.sync.test;
 
 /**
  * Created by bobby.peng on 2016/12/15.
