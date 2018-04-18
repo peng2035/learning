@@ -10,7 +10,7 @@ public class AsyncClass {
 
     @Async
     public void test() {
-        System.out.println(Thread.currentThread() + " in async class test");
+        System.out.println(Thread.currentThread() + " in async class await");
     }
 
 

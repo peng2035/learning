@@ -15,12 +15,26 @@ public class ConditionTest {
 
     private Condition condition = reentrantLock.newCondition();
 
-    public void test() {
+    public void await() throws InterruptedException {
+        reentrantLock.lock();
         try {
-            reentrantLock.lock();
-
+            condition.await();
         } finally {
             reentrantLock.unlock();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ConditionTest test = new ConditionTest();
+
+        for(int i=0;i<5;i++) {
+            new Thread(() -> {
+                try {
+                    test.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
     }
 

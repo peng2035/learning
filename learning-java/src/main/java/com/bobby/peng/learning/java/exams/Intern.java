@@ -23,7 +23,7 @@ public class Intern {
     public static void main(String[] args) {
 //        Intern intern = new Intern();
 //
-//        intern.test();
+//        intern.await();
 
         System.out.println(1+1+'1'+1+1+1+1+"1");
 

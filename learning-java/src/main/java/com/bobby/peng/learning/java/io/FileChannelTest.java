@@ -10,7 +10,7 @@ import java.nio.channels.FileChannel;
  */
 public class FileChannelTest {
     public static void main(String[] args) throws IOException {
-        RandomAccessFile aFile = new RandomAccessFile("/Users/peng2035/Documents/test/a.txtx", "rw");
+        RandomAccessFile aFile = new RandomAccessFile("/Users/peng2035/Documents/await/a.txtx", "rw");
         FileChannel channel = aFile.getChannel();
 
         ByteBuffer buf = ByteBuffer.allocate(48);

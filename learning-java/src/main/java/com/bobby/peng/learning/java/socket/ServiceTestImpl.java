@@ -6,7 +6,7 @@ package com.bobby.peng.learning.java.socket;
 public class ServiceTestImpl implements ServiceTest{
 
     public String print() {
-        return "service test print method has down";
+        return "service await print method has down";
     }
 
 }

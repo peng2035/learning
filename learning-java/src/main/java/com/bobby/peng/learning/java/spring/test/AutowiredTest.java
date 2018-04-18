@@ -13,16 +13,16 @@ public class AutowiredTest {
     private InnerAutowiredTest innerAutowiredTest;
 
     public static void main(String[] args) {
-        ApplicationContext appContext = new ClassPathXmlApplicationContext("spring-test.xml");
+        ApplicationContext appContext = new ClassPathXmlApplicationContext("spring-await.xml");
 
         AutowiredTest autowiredTest = appContext.getBean("autowiredTest",AutowiredTest.class);
 
         if(autowiredTest == null) {
-            System.out.println("autowired test is null");
+            System.out.println("autowired await is null");
         }
 
         if(autowiredTest.innerAutowiredTest == null) {
-            System.out.println("inner autowired test is null");
+            System.out.println("inner autowired await is null");
         }
     }
 

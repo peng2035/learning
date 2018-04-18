@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestAOP {
 
     public void print() {
-        System.out.println("test aop");
+        System.out.println("await aop");
     }
 
     public static void main(String[] args) {

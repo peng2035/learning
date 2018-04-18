@@ -25,7 +25,7 @@ public class RedisUtilsTest extends AbstractTestCase {
     @Test
     public void test() {
         for (int i = 0; i < 1000; i++) {
-            redisUtils.set("scan:test:key:" + i, "value");
+            redisUtils.set("scan:await:key:" + i, "value");
         }
     }
 
