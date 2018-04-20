@@ -1,5 +1,8 @@
 package com.bobby.peng.learning.java.sync.test;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by peng2035 on 2017/6/28.
  */
@@ -26,26 +29,48 @@ public class ConcurrentHashMapTest {
 
     }
 
+
+    static class ConstantHashCodeObj {
+        @Override
+        public int hashCode() {
+            return 1;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return obj == this;
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
-        String value = "1";
-        ConcurrentHashMapTest concurrentHashMapTest = new ConcurrentHashMapTest(value);
+        Map<ConstantHashCodeObj, Integer> map = new ConcurrentHashMap<>();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    concurrentHashMapTest.putValue("123");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        for (int i = 0; i < 10; i++) {
+            map.put(new ConstantHashCodeObj(), i);
+        }
 
-        Thread.sleep(500l);
 
-        new Thread(() -> {
-            concurrentHashMapTest.get();
-        }).start();
+
+
+//        String value = "1";
+//        ConcurrentHashMapTest concurrentHashMapTest = new ConcurrentHashMapTest(value);
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    concurrentHashMapTest.putValue("123");
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//        Thread.sleep(500l);
+//
+//        new Thread(() -> {
+//            concurrentHashMapTest.get();
+//        }).start();
 
 //        ExecutorService setPool = Executors.newFixedThreadPool(5);
 //        for(int i = 0;i<5;i++) {
