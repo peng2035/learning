@@ -32,7 +32,7 @@ public class Listener {
 
     private final static String PENGTIANHAO_TEST_GROUP_2 = "pengtianhao-await-group-2";
 
-    @KafkaListener(topics = "pengtianhao-await", groupId = PENGTIANHAO_TEST_GROUP_1)
+    @KafkaListener(topics = "pengtianhao-await", group = PENGTIANHAO_TEST_GROUP_1)
     public void listen(ConsumerRecord<String, String> cr) {
 
         map.computeIfAbsent(PENGTIANHAO_TEST_GROUP_1, k -> new LongAdder()).increment();
@@ -45,7 +45,7 @@ public class Listener {
 //        set.add(Thread.currentThread());
     }
 
-    @KafkaListener(topics = "pengtianhao-await", groupId = PENGTIANHAO_TEST_GROUP_2)
+    @KafkaListener(topics = "pengtianhao-await", group = PENGTIANHAO_TEST_GROUP_2)
     public void listen2(ConsumerRecord<String, String> cr) {
         map.computeIfAbsent(PENGTIANHAO_TEST_GROUP_2, k -> new LongAdder()).increment();
         long value = map.get(PENGTIANHAO_TEST_GROUP_2).longValue();
