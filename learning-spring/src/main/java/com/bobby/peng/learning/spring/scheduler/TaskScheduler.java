@@ -1,8 +1,6 @@
 package com.bobby.peng.learning.spring.scheduler;
 
-import com.bobby.peng.learning.java.basic.utils.RedisUtils;
 import com.bobby.peng.learning.spring.service.KafkaService;
-import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
