@@ -1,6 +1,11 @@
 package com.bobby.peng.learning.java.sync.test;
 
+import org.apache.commons.lang.math.RandomUtils;
+
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -8,28 +13,39 @@ import java.util.concurrent.*;
  */
 public class FutureTest {
 
-    public static Future<HashMap> get() {
-        return Executors.newFixedThreadPool(10).submit(new Callable<HashMap>() {
-            @Override
-            public HashMap call() throws Exception {
-                System.out.println("in call");
-                return new HashMap();
-            }
-        });
+    private static ExecutorService pool = Executors.newFixedThreadPool(10);
+
+
+    public static List<Future> get() {
+        List<Future> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Future<String> future = pool.submit(() -> {
+                int sleepSeconds = RandomUtils.nextInt(3);
+                TimeUnit.SECONDS.sleep(sleepSeconds);
+                System.out.println("in call " + Thread.currentThread().getName() + " , wait : " + sleepSeconds);
+                return Thread.currentThread().getName();
+            });
+            list.add(future);
+        }
+        return list;
     }
 
-    public static void main(String[] args) {
-        Future<HashMap> future = get();
+    public static void main(String[] args) throws InterruptedException {
+        List<Future> list = get();
         System.out.println("hello");
         try {
-            future.get();
+            for (Future future : list) {
+                long startTime = System.currentTimeMillis();
+                System.out.println("get future method : " + future.get() + "wait time : " + (System.currentTimeMillis() - startTime));
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        System.out.println(111);
 
+        pool.shutdown();
+        pool.awaitTermination(1000,TimeUnit.SECONDS);
     }
 
 }
