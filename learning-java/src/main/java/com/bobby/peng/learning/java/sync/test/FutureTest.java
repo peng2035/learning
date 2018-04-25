@@ -13,15 +13,15 @@ import java.util.concurrent.*;
  */
 public class FutureTest {
 
-    private static ExecutorService pool = Executors.newFixedThreadPool(10);
+    private static ExecutorService pool = Executors.newFixedThreadPool(1);
 
 
     public static List<Future> get() {
         List<Future> list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             Future<String> future = pool.submit(() -> {
                 int sleepSeconds = RandomUtils.nextInt(3);
-                TimeUnit.SECONDS.sleep(sleepSeconds);
+                TimeUnit.DAYS.sleep(1);
                 System.out.println("in call " + Thread.currentThread().getName() + " , wait : " + sleepSeconds);
                 return Thread.currentThread().getName();
             });
