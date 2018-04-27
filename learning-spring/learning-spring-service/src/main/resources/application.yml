@@ -1,6 +1,6 @@
 spring:
   application:
-    name: learning-spring-cloud-service
+    name: hello-service
 
 logging.file: /var/log/learning-spring/learning-spring-cloud-service.log
 

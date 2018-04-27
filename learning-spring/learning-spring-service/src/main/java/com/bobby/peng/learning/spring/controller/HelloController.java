@@ -1,4 +1,4 @@
-package com.bobby.peng.learning.spring.service.controller;
+package com.bobby.peng.learning.spring.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
