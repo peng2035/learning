@@ -3,6 +3,7 @@ package com.bobby.peng.learning.java.hystrix;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixObservableCommand;
 import rx.Observable;
+import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
 /**
@@ -23,11 +24,51 @@ public class HystrixObservableCommandHelloWorld extends HystrixObservableCommand
     protected Observable<String> construct() {
         return Observable.create(
 
-            (Observable.OnSubscribe<String>) subscriber -> {
-                if (!subscriber.isUnsubscribed()) {
-                    subscriber.onNext("Hello " + somebody);
-                    subscriber.onCompleted();
-                }
-            }).subscribeOn(Schedulers.io());
+                (Observable.OnSubscribe<String>) subscriber -> {
+                    if (!subscriber.isUnsubscribed()) {
+                        subscriber.onNext("Hello " + somebody);
+                        subscriber.onCompleted();
+                    }
+                }).subscribeOn(Schedulers.io());
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Observable<String> observable = Observable.create(
+                (Observable.OnSubscribe<String>) subscriber -> {
+                    if (!subscriber.isUnsubscribed()) {
+                        subscriber.onNext("Hello ");
+                        subscriber.onCompleted();
+                    }
+                });
+
+        Subscriber<String> subscriber = new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+                System.out.println("mission completed");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                System.out.println(s);
+            }
+        };
+
+        observable.subscribe(subscriber);
+
+//        for(int i=0;i<100;i++) {
+//            new Thread(()-> {
+//                new HystrixObservableCommandHelloWorld("hello").observe();
+//            });
+//        }
+////        for(;;) {
+////            System.out.println(observable.take(1));
+////        }
+//
+//        Thread.sleep(10000);
     }
 }
