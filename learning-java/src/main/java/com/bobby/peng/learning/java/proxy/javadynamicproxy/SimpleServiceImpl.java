@@ -22,7 +22,7 @@ public class SimpleServiceImpl implements SimpleService {
 
     public static void main(String[] args) throws Exception {
 //        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-        ProxyUtils.generateClassFile(SimpleServiceImpl.class, "SimpleServiceJavaDynamicProxy");
+        ProxyUtils.generateClassFile(SimpleServiceImpl.class,  "SimpleServiceJavaDynamicProxy");
 
         SimpleService simpleService = new SimpleServiceImpl();
         SimpleService simpleServiceImpl = SimpleServiceProxy.proxy(SimpleService.class, simpleService);
