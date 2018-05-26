@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Twitter {
 
-    //todo test and do better
+    //todo await and do better
 
     private static final int TIMELINE_LENGTH = 10;
 

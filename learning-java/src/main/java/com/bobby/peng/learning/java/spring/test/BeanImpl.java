@@ -1,6 +1,6 @@
 package com.bobby.peng.learning.java.spring.test;
 
-import com.bobby.peng.learning.java.annoation.MethodAnnotation;
+import com.bobby.peng.learning.java.annotation.MethodAnnotation;
 
 /**
  * Created by bobby.peng on 2017/2/15.

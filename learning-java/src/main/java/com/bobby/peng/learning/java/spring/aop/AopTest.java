@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class AopTest {
 
-    @Pointcut("@annotation(com.bobby.peng.learning.java.annoation.AopAnnotation)")
+    @Pointcut("@annotation(com.bobby.peng.learning.java.annotation.AopAnnotation)")
     private void aopService() {
         System.out.println("in aop service");
     }

@@ -1,6 +1,5 @@
 package com.bobby.peng.learning.java.spring.aop;
 
-import com.bobby.peng.learning.java.annoation.AopAnnotation;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

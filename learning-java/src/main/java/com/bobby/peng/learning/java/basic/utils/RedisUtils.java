@@ -1,6 +1,10 @@
 package com.bobby.peng.learning.java.basic.utils;
 
+import com.bobby.peng.learning.java.sequence.Sequence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.*;
@@ -8,20 +12,19 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.util.Assert;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
- *
  * @author <a href="mailto:peng2035@163.com">彭天浩</a>
  * @version 1.0
  */
 public class RedisUtils<K, V> implements InitializingBean {
 
-    private RedisTemplate<K, V> redisTemplate;
+    private static Logger logger = LoggerFactory.getLogger(RedisUtils.class);
 
-    private RedisSerializer redisSerializer;
+    private RedisTemplate<K, V> redisTemplate;
 
     private final static int DEFAULT_ZSET_START = 0;
 
@@ -42,11 +45,6 @@ public class RedisUtils<K, V> implements InitializingBean {
         if (redisTemplate == null) {
             redisTemplate = new RedisTemplate<K, V>();
         }
-        if (redisSerializer == null) {
-            redisSerializer = new StringRedisSerializer();
-            redisTemplate.setKeySerializer(redisSerializer);
-        }
-
     }
 
     public void watch(K key) {
@@ -66,21 +64,38 @@ public class RedisUtils<K, V> implements InitializingBean {
     }
 
     public Long ttl(K key) {
-        return redisTemplate.getExpire(key,TimeUnit.MILLISECONDS);
+        return redisTemplate.getExpire(key, TimeUnit.MILLISECONDS);
     }
 
+    public void scan(String match, int countValue) {
+        RedisConnection redisConnection = redisTemplate.getConnectionFactory().getConnection();
+        ScanOptions options = ScanOptions.scanOptions().match(match).count(countValue).build();
+        boolean done = false;
 
+        while (!done) {
+            Cursor c = redisConnection.scan(options);
+            try {
+                while (c.hasNext()) {
+                    logger.info(new String((byte[]) c.next()));
+                }
+                done = true; //we've made it here, lets go away
+            } catch (NoSuchElementException nse) {
+                System.out.println("Going for " + countValue + " was not hard enough. Trying harder");
+                options = ScanOptions.scanOptions().match(match).count(countValue * 2).build();
+            }
+        }
+    }
 
     public boolean keys(K key) {
         return redisTemplate.hasKey(key);
     }
 
-    public boolean expire(K key,long time) {
-        return redisTemplate.expire(key,time, TimeUnit.MILLISECONDS);
+    public boolean expire(K key, long time) {
+        return redisTemplate.expire(key, time, TimeUnit.MILLISECONDS);
     }
 
-    public boolean expireAt(K key,long time) {
-        return redisTemplate.expireAt(key,new Date(time));
+    public boolean expireAt(K key, long time) {
+        return redisTemplate.expireAt(key, new Date(time));
     }
 
     public void del(K key) {
@@ -99,8 +114,16 @@ public class RedisUtils<K, V> implements InitializingBean {
         redisTemplate.opsForValue().set(key, value);
     }
 
+    public long incr(K key) {
+        return incr(key, 1);
+    }
+
+    public long incr(K key, int delta) {
+        return redisTemplate.opsForValue().increment(key, delta);
+    }
+
     public boolean setNX(K key, V value) {
-        return redisTemplate.opsForValue().setIfAbsent(key,value);
+        return redisTemplate.opsForValue().setIfAbsent(key, value);
     }
 
     public boolean zadd(K key, V value, double score) {
@@ -154,8 +177,8 @@ public class RedisUtils<K, V> implements InitializingBean {
     }
 
     public Set<V> zReserveGetAll(K key) {
-            return zReverseRange(key, DEFAULT_ZSET_START, DEFAULT_ZSET_END);
-        }
+        return zReverseRange(key, DEFAULT_ZSET_START, DEFAULT_ZSET_END);
+    }
 
     public Set<V> zRangeWithStart(K key, long start) {
         return zRange(key, start, DEFAULT_ZSET_END);
@@ -185,8 +208,8 @@ public class RedisUtils<K, V> implements InitializingBean {
         return redisTemplate.opsForZSet().rangeWithScores(key, start, end);
     }
 
-    public Long zrank(K key,V member) {
-        return redisTemplate.opsForZSet().rank(key,member);
+    public Long zrank(K key, V member) {
+        return redisTemplate.opsForZSet().rank(key, member);
     }
 
     public long zRem(K key, V... member) {
@@ -199,14 +222,6 @@ public class RedisUtils<K, V> implements InitializingBean {
 
     public void setRedisTemplate(RedisTemplate<K, V> redisTemplate) {
         this.redisTemplate = redisTemplate;
-    }
-
-    public RedisSerializer getRedisSerializer() {
-        return redisSerializer;
-    }
-
-    public void setRedisSerializer(RedisSerializer redisSerializer) {
-        this.redisSerializer = redisSerializer;
     }
 
     private RedisSerializer keySerializer() {
@@ -239,5 +254,33 @@ public class RedisUtils<K, V> implements InitializingBean {
             rawValues[i++] = rawValue(value);
         }
         return rawValues;
+    }
+
+    private class RedisSequence implements Sequence, InitializingBean {
+
+        private K seqKey;
+
+        @Override
+        public void afterPropertiesSet() throws Exception {
+            if (seqKey == null) {
+                throw new RuntimeException("seq key can't be null");
+            }
+        }
+
+        @Override
+        public long next() {
+            return incr(seqKey);
+        }
+
+        @Override
+        public String uniqueKey() {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+            return sdf.format(new Date()) + StringUtils.leftPad(String.valueOf(next()), 16);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Date(1521648010855l));
     }
 }

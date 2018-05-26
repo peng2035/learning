@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean class="com.bobby.peng.learning.java.spring.aop.AopMethodTest"></bean>
+    <bean id="interceptorTest" class="com.bobby.peng.learning.java.spring.InterceptorTest"></bean>
+
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="interceptorPointcut"
+                      expression="execution(* com.bobby.peng.learning.java.spring.aop.*.*(..))"/>
+        <aop:advisor advice-ref="interceptorTest" pointcut-ref="interceptorPointcut"/>
+    </aop:config>
+
+    <context:component-scan base-package="com.bobby.peng.learning.java.sequence"/>
+
+    <import resource="appcontext-service-cache.xml"></import>
+
+</beans>

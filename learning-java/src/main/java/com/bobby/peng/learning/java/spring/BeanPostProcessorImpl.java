@@ -1,6 +1,6 @@
 package com.bobby.peng.learning.java.spring;
 
-import com.bobby.peng.learning.java.annoation.MethodAnnotation;
+import com.bobby.peng.learning.java.annotation.MethodAnnotation;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 

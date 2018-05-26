@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: hello-service
+
+logging.file: /var/log/learning-spring/learning-spring-cloud-service.log
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://47.98.112.30:8761/eureka/

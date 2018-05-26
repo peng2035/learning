@@ -1,7 +1,7 @@
 package com.bobby.peng.learning.java.exams;
 
-import com.bobby.peng.learning.java.annoation.Annotation;
-import com.bobby.peng.learning.java.annoation.AnnotationOut;
+import com.bobby.peng.learning.java.annotation.Annotation;
+import com.bobby.peng.learning.java.annotation.AnnotationOut;
 
 /**
  *
