@@ -2,24 +2,21 @@ package com.bobby.peng.learning.java.netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.*;
 import io.netty.util.CharsetUtil;
 
 /**
  * Created by bobby.peng on 2018/5/10.
  */
 @ChannelHandler.Sharable
-public class EchoServerHandler extends ChannelInboundHandlerAdapter {
+public class EchoServerHandler2 extends SimpleChannelInboundHandler<Object> {
+
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf in = (ByteBuf) msg;
         System.out.println("server received : " + in.toString(CharsetUtil.UTF_8));
         ctx.write(in);
-        ctx.fireChannelRead(msg);
     }
 
     @Override

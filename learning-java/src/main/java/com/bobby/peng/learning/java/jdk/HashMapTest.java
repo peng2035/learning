@@ -1,6 +1,7 @@
 package com.bobby.peng.learning.java.jdk;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * @author <a href="mailto:peng2035@163.com">彭天浩</a>
@@ -66,6 +67,9 @@ public class HashMapTest {
         innerHashMap.setKey(5);
         System.out.println("current hash code : " + innerHashMap.hashCode());
         System.out.println("current value in map : " + map.get(innerHashMap));
+
+        LinkedHashMap<Integer,Integer> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put(1,2);
 
     }
 
