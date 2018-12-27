@@ -37,7 +37,7 @@ public class KafkaConfig {
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
 
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "106.14.115.150:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "118.184.219.65:9092");
 //        props.put(ConsumerConfig.GROUP_ID_CONFIG, "pengtianhao-await-group");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100");
@@ -61,7 +61,7 @@ public class KafkaConfig {
     @Bean
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "106.14.115.150:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "118.184.219.65:9092");
         props.put(ProducerConfig.RETRIES_CONFIG, 0);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
         props.put(ProducerConfig.LINGER_MS_CONFIG, 1);

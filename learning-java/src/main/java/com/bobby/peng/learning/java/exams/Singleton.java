@@ -1,5 +1,12 @@
 package com.bobby.peng.learning.java.exams;
 
+import org.apache.commons.lang.math.RandomUtils;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.*;
+
 /**
  *
  *
@@ -22,5 +29,29 @@ public class Singleton {
             }
         }
         return singleton;
+    }
+
+
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService pool = Executors.newFixedThreadPool(10);
+
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
+        for(int i=0;i<10;i++) {
+            pool.execute(() -> {
+                System.out.println(111);
+                try {
+                    Thread.sleep(RandomUtils.nextInt(3000));
+                    cyclicBarrier.await();
+                    System.out.println(System.currentTimeMillis());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        pool.shutdown();
+        pool.awaitTermination(10, TimeUnit.SECONDS);
     }
 }

@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by bobby.peng on 2018/11/13.
  */
-public class SerializeObject extends ParentSerializeObject {
+public class SerializeObject extends ParentSerializeObject implements Serializable {
 
     private String value;
 
@@ -25,7 +25,7 @@ public class SerializeObject extends ParentSerializeObject {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        SerializeObject serializeObject = new SerializeObject("1","2");
+        SerializeObject serializeObject = new SerializeObject("1", "2");
         FileOutputStream fos = new FileOutputStream("SerializeObject.out");
 
         ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -35,14 +35,13 @@ public class SerializeObject extends ParentSerializeObject {
         oos.close();
 
 
-
         FileInputStream fis = new FileInputStream("SerializeObject.out");
 
         ObjectInputStream ois = new ObjectInputStream(fis);
 
         serializeObject = (SerializeObject) ois.readObject();
 
-        System.out.println(serializeObject.value + "," + serializeObject.value2);
+        System.out.println(serializeObject.value + "," + serializeObject.value2 + "," + serializeObject.getParentValue());
         ois.close();
 
     }
