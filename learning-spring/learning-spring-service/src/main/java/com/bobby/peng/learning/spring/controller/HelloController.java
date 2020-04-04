@@ -2,6 +2,7 @@ package com.bobby.peng.learning.spring.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @RequestMapping(value = "/hello")
-    public String sayHello() {
-        String hello = "hello";
+    public String sayHello(@RequestParam String value) {
+        String hello = "hello1";
         log.info(hello);
         return hello;
     }

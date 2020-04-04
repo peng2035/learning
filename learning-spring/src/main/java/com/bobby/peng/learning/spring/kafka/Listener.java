@@ -11,6 +11,7 @@ import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -23,8 +24,10 @@ import java.util.concurrent.atomic.LongAdder;
 @Slf4j
 //@KafkaListener(topics = "pengtianhao-await-2",groupId = "pengtianhao-await-2-group-1")
 public class Listener {
-    @Autowired
-    private RedisUtils<String, String> redisUtils;
+//    @Autowired
+//    private RedisUtils<String, String> redisUtils;
+
+
 
     public static Map<String, LongAdder> map = Maps.newConcurrentMap();
 
@@ -61,4 +64,7 @@ public class Listener {
 //        log.info("pengtianhao-await-group-4 : " + cr.toString());
 //        redisUtils.set(cr.key(),cr.value());
 //    }
+
+
+
 }
