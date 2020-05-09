@@ -15,11 +15,11 @@ public class ThreadPoolExecutorTest {
     public static void main(String[] args) throws Exception {
         System.out.println(System.currentTimeMillis());
         ExecutorService exec = Executors.newFixedThreadPool(10);
-        for(int i=0;i<100000;i++) {
+        for(int i=0;i<10;i++) {
             exec.execute(new Task());
         }
-        exec.shutdown();
-        exec.awaitTermination(1,TimeUnit.DAYS);
+        exec.shutdownNow();
+//        exec.awaitTermination(1,TimeUnit.DAYS);
         System.out.println("mission completed");
     }
 
@@ -33,7 +33,7 @@ public class ThreadPoolExecutorTest {
                 System.out.println("Interrupted sleep");
                 System.out.println(System.currentTimeMillis());
             }
-//            System.out.println("finish running");
+            System.out.println("finish running");
         }
     }
 

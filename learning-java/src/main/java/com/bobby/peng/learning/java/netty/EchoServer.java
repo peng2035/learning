@@ -30,18 +30,18 @@ public class EchoServer {
     }
 
     public void start() throws InterruptedException {
-        final EchoServerHandler serverHandler = new EchoServerHandler();
-
-        EventLoopGroup group = new NioEventLoopGroup();
+        //用于接受连接
+        EventLoopGroup mainReactor = new NioEventLoopGroup();
+        EventLoopGroup group = new NioEventLoopGroup(128);
         try {
             ServerBootstrap b = new ServerBootstrap();
-            b.group(group)
+            b.group(mainReactor, group)
                     .channel(NioServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(serverHandler,new EchoServerHandler2());
+                            ch.pipeline().addLast(new EchoServerHandler(), new EchoServerHandler2());
                         }
                     });
             ChannelFuture f = b.bind().sync();

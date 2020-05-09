@@ -9,6 +9,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by bobby.peng on 2018/5/15.
@@ -36,8 +38,11 @@ public class EchoClient {
                             ch.pipeline().addLast(new EchoClientHandler());
                         }
                     });
-            ChannelFuture channelFuture = b.connect().sync();
-            channelFuture.channel().closeFuture().sync();
+            ExecutorService pool = Executors.newFixedThreadPool(16);
+            for(int i=0;i<32;i++) {
+                ChannelFuture channelFuture = b.connect().sync();
+                channelFuture.channel().closeFuture().sync();
+            }
         } finally {
             group.shutdownGracefully().sync();
         }

@@ -15,7 +15,7 @@ public class EchoServerHandler2 extends SimpleChannelInboundHandler<Object> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf in = (ByteBuf) msg;
-        System.out.println("server received : " + in.toString(CharsetUtil.UTF_8));
+        System.out.println(Thread.currentThread() + " server received : " + in.toString(CharsetUtil.UTF_8) + "in handler2");
         ctx.write(in);
     }
 

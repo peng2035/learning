@@ -14,12 +14,12 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer(Thread.currentThread() +" Netty rocks!", CharsetUtil.UTF_8));
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
-        System.out.println("client received : " + in.toString(CharsetUtil.UTF_8));
+        System.out.println(Thread.currentThread() + " client received : " + in.toString(CharsetUtil.UTF_8));
     }
 
     @Override
